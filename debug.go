@@ -22,7 +22,7 @@ import (
 )
 
 func (t *BTree) print(w io.Writer) {
-	t.root.print(w, 0)
+	t.Root.print(w, 0)
 }
 
 func (n *node) print(w io.Writer, level int) {
@@ -31,8 +31,8 @@ func (n *node) print(w io.Writer, level int) {
 		fmt.Fprintf(w, "%s<nil>\n", indent)
 		return
 	}
-	fmt.Fprintf(w, "%s%v\n", indent, n.items)
-	for _, c := range n.children {
+	fmt.Fprintf(w, "%s%v\n", indent, n.Items)
+	for _, c := range n.Children {
 		c.print(w, level+1)
 	}
 }

@@ -223,7 +223,7 @@ func BenchmarkFind(b *testing.B) {
 				b.Run(alg.name, func(b *testing.B) {
 					for i := 0; i < b.N; i++ {
 						for j := 0; j < len(items); j++ {
-							alg.fun(items[j].key, items)
+							alg.fun(items[j].Key, items)
 						}
 					}
 				})
@@ -233,7 +233,7 @@ func BenchmarkFind(b *testing.B) {
 }
 
 func findBinary(k Key, s []item) (int, bool) {
-	i := sort.Search(len(s), func(i int) bool { return less(k, s[i].key) })
+	i := sort.Search(len(s), func(i int) bool { return less(k, s[i].Key) })
 	// i is the smallest index of s for which key.Less(s[i].Key), or len(s).
 	if i > 0 && !less(s[i-1], k) {
 		return i - 1, true
@@ -244,11 +244,11 @@ func findBinary(k Key, s []item) (int, bool) {
 func findLinear(k Key, s []item) (int, bool) {
 	var i int
 	for i = 0; i < len(s); i++ {
-		if less(k, s[i].key) {
+		if less(k, s[i].Key) {
 			break
 		}
 	}
-	if i > 0 && !less(s[i-1].key, k) {
+	if i > 0 && !less(s[i-1].Key, k) {
 		return i - 1, true
 	}
 	return i, false
@@ -261,7 +261,7 @@ func (a byInts) Len() int {
 }
 
 func (a byInts) Less(i, j int) bool {
-	return a[i].key.(int) < a[j].key.(int)
+	return a[i].Key.(int) < a[j].Key.(int)
 }
 
 func (a byInts) Swap(i, j int) {

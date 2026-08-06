@@ -234,7 +234,7 @@ func TestIterator(t *testing.T) {
 	// Root with zero children.
 	tr.Set(1, nil)
 	tr.Delete(1)
-	if !(tr.root != nil && len(tr.root.children) == 0 && len(tr.root.items) == 0) {
+	if !(tr.Root != nil && len(tr.Root.Children) == 0 && len(tr.Root.Items) == 0) {
 		t.Fatal("wrong shape tree")
 	}
 	for i, it := range []*Iterator{
